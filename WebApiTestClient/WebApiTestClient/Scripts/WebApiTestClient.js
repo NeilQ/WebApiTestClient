@@ -121,9 +121,15 @@ var emptyTestClientModel =
 
             var httpMethod = self.HttpMethod();
             var headers = self.RequestHeaders();
-            var requestBody = self.ShouldShowBody() ? self.RequestBody() : null;
+            //var requestBody = self.ShouldShowBody() ? self.RequestBody() : null;
+            var requestBody = self.ShouldShowBody() ? $("#req-body").val() : null;
             SendRequest(httpMethod, uri, headers, requestBody, function (httpRequest) {
                 var httpResponse = getHttpResponse(httpRequest);
+                if (httpResponse.headers.includes("/json")) {
+                    httpResponse.content = JSON.stringify(JSON.parse(httpResponse.content), null, 4);
+                } else if (httpResponse.headers.includes("/xml")) {
+                    httpResponse.content = formatXml(httpResponse.content);
+                }
                 self.response(httpResponse);
                 $("#testClientResponseDialog").dialog("open");
             });
@@ -252,4 +258,35 @@ function getHttpResponse(httpRequest) {
     var responseStatus = statusCode + "/" + statusText;
 
     return { status: responseStatus, headers: responseHeaders, content: rawResponse };
+}
+
+function formatXml(xml) {
+    var formatted = '';
+    var reg = /(>)(<)(\/*)/g;
+    xml = xml.replace(reg, '$1\r\n$2$3');
+    var pad = 0;
+    jQuery.each(xml.split('\r\n'), function (index, node) {
+        var indent = 0;
+        if (node.match(/.+<\/\w[^>]*>$/)) {
+            indent = 0;
+        } else if (node.match(/^<\/\w/)) {
+            if (pad != 0) {
+                pad -= 1;
+            }
+        } else if (node.match(/^<\w[^>]*[^\/]>.*$/)) {
+            indent = 1;
+        } else {
+            indent = 0;
+        }
+
+        var padding = '';
+        for (var i = 0; i < pad; i++) {
+            padding += '  ';
+        }
+
+        formatted += padding + node + '\r\n';
+        pad += indent;
+    });
+
+    return formatted;
 }
