@@ -3,7 +3,7 @@ A simple Test Client built on top of ASP.NET Web API Help Page.
 
 ## Changes
 Optimized the json display ui of http response.
-![image](https://raw.githubusercontent.com/NeilQ/WebTestClient/master/json-example.jpg)
+![image](https://raw.githubusercontent.com/NeilQ/WebApiTestClient/master/json-example.png)
 
 ## Documentation
 http://blogs.msdn.com/b/yaohuang1/archive/2012/12/04/10373804.aspx
