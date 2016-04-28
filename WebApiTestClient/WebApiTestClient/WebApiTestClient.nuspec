@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>WebApiTestClient-obadneil</id>
-    <version>1.0.0</version>
+    <version>1.2.1</version>
     <title>A Simple Test Client for ASP.NET Web API</title>
     <authors>NeilQ</authors>
     <owners />
@@ -14,8 +14,8 @@
     <language>en-US</language>
     <tags>ASP.NET Web API Test Client</tags>
     <dependencies>
-      <dependency id="Microsoft.AspNet.WebApi.HelpPage" version="4.0.0" />
-      <dependency id="knockoutjs" version="2.2.0" />
+      <dependency id="Microsoft.AspNet.WebApi.HelpPage" version="5.2.2" />
+      <dependency id="knockoutjs" version="3.2.0" />
       <dependency id="jQuery.UI.Combined" version="1.9.2" />
     </dependencies>
   </metadata>
@@ -24,8 +24,8 @@
     <file src="Areas\HelpPage\Views\Help\DisplayTemplates\TestClientReferences.cshtml" target="content\Areas\HelpPage\Views\Help\DisplayTemplates\TestClientReferences.cshtml" />
     <file src="Areas\HelpPage\TestClient.css" target="content\Areas\HelpPage\TestClient.css" />
     <file src="Scripts\WebApiTestClient.js" target="content\Scripts\WebApiTestClient.js" />
-    <file src="tools\install.ps1" target="tools\install.ps1" />
-    <file src="tools\uninstall.ps1" target="tools\uninstall.ps1" />
+    <file src="tools\Install.ps1" target="tools\Install.ps1" />
+    <file src="tools\Uninstall.ps1" target="tools\Uninstall.ps1" />
     <file src="readme.txt" target="readme.txt" />
   </files>
 </package>
